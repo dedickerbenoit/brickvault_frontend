@@ -1,0 +1,89 @@
+/* Imports */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Variables globales */
+:root {
+  /* Font */
+  --font-inter: "Inter", sans-serif;
+
+  /* Color palette - Collector Light */
+  --color-background: #F9FAFB;
+  --color-background-card: #FFFFFF;
+
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-disabled: #9CA3AF;
+
+  --color-border: #E5E7EB;
+  --color-border-hover: #D1D5DB;
+
+  --color-primary: #D32F2F;
+  --color-gold: #E0B84C;
+  --color-blue: #2563EB;
+
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+  --color-info: #0284C7;
+}
+
+/* Base html/body/root */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
