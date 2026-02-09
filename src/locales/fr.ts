@@ -12,6 +12,51 @@ export default {
       noAccount: "Pas encore de compte ?",
       createAccount: "Créer un compte",
     },
+    register: {
+      title: "Créer un compte",
+      subtitle: "Rejoignez BrickVault et gérez votre collection LEGO",
+      firstName: "Prénom",
+      firstNamePlaceholder: "Jean",
+      name: "Nom",
+      namePlaceholder: "Dupont",
+      email: "Email",
+      emailPlaceholder: "vous@exemple.com",
+      password: "Mot de passe",
+      passwordPlaceholder: "••••••••",
+      confirmPassword: "Confirmer le mot de passe",
+      confirmPasswordPlaceholder: "••••••••",
+      submit: "Créer mon compte",
+      hasAccount: "Déjà un compte ?",
+      login: "Se connecter",
+      passwordRules: {
+        minLength: "8 caractères minimum",
+        uppercase: "Une lettre majuscule",
+        digit: "Un chiffre",
+        specialChar: "Un caractère spécial (@$!%*?&)",
+      },
+      hero: {
+        title: "Rejoignez BrickVault",
+        description:
+          "La plateforme complète pour gérer votre collection LEGO, suivre vos investissements et maximiser votre ROI.",
+        catalog: "Catalogue complet",
+        catalogDescription:
+          "Accédez à des milliers de sets LEGO avec photos et détails",
+        roi: "Suivi ROI en temps réel",
+        roiDescription:
+          "Calculez automatiquement vos gains et pertes",
+        free: "100% gratuit",
+        freeDescription:
+          "Toutes les fonctionnalités essentielles sans frais",
+      },
+    },
+  },
+  validation: {
+    firstNameRequired: "Le prénom est requis",
+    nameRequired: "Le nom est requis",
+    emailRequired: "L'email est requis",
+    emailInvalid: "L'email n'est pas valide",
+    passwordRequired: "Le mot de passe est requis",
+    passwordMismatch: "Les mots de passe ne correspondent pas",
   },
   layout: {
     footer: {
