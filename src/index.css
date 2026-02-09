@@ -7,7 +7,7 @@
   /* Font */
   --font-inter: "Inter", sans-serif;
 
-  /* Color palette - Collector Light */
+  /* Layout */
   --color-background: #F9FAFB;
   --color-background-card: #FFFFFF;
 
@@ -17,14 +17,6 @@
 
   --color-border: #E5E7EB;
   --color-border-hover: #D1D5DB;
-
-  --color-primary: #D32F2F;
-  --color-gold: #E0B84C;
-  --color-blue: #2563EB;
-
-  --color-success: #16A34A;
-  --color-error: #DC2626;
-  --color-info: #0284C7;
 }
 
 /* Base html/body/root */
@@ -61,24 +53,24 @@ body {
 /* Links */
 a {
   font-weight: 500;
-  color: var(--color-blue);
+  color: var(--color-blue-500);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-primary-500);
 }
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-500);
   color: white;
 }
 
