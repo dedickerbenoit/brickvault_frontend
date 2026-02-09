@@ -44,7 +44,9 @@ export default function LoginDropdown() {
       }
       className="w-80"
     >
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("auth.login.title")}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        {t("auth.login.title")}
+      </h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email */}
@@ -82,9 +84,7 @@ export default function LoginDropdown() {
         </div>
 
         {/* Error */}
-        {error && (
-          <p className="text-sm text-red-600">{error}</p>
-        )}
+        {error && <p className="text-sm text-red-600">{error}</p>}
 
         {/* Submit */}
         <Button type="submit" size="md" fullWidth loading={isLoading}>
