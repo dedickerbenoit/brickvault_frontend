@@ -3,11 +3,12 @@ import { Button } from "../ui";
 import { cn } from "@/utils";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { login } from "@/services/authService";
-import { STORAGE_KEYS, ROUTES } from "@/constants";
+import { useAuth } from "@/hooks";
+import { ROUTES } from "@/constants";
 
 export default function LoginDropdown() {
   const { t } = useTranslation();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,9 +22,7 @@ export default function LoginDropdown() {
     setIsLoading(true);
 
     try {
-      const response = await login(formData.email, formData.password);
-      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, response.access_token);
-      window.location.reload();
+      await login(formData.email, formData.password);
     } catch {
       setError(t("auth.login.error"));
     } finally {
