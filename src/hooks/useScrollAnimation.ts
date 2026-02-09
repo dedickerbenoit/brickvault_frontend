@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
+const DEFAULT_OPTIONS: IntersectionObserverInit = { threshold: 0.1 };
+
 export function useScrollAnimation(
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = DEFAULT_OPTIONS
 ): [React.RefObject<HTMLElement | null>, boolean] {
   const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const optionsRef = useRef(options);
 
   useEffect(() => {
     const element = ref.current;
@@ -14,17 +17,14 @@ export function useScrollAnimation(
       if (entry.isIntersecting) {
         setIsVisible(true);
       }
-    }, {
-      threshold: 0.1,
-      ...options,
-    });
+    }, optionsRef.current);
 
     observer.observe(element);
 
     return () => {
       observer.disconnect();
     };
-  }, [options]);
+  }, []);
 
   return [ref, isVisible];
 }
