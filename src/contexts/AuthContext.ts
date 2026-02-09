@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { type RegisterData } from "@/services/authService";
 
 interface User {
   id: number;
@@ -12,6 +13,7 @@ export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
   logout: () => void;
 }
 

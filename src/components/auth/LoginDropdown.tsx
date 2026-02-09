@@ -1,7 +1,7 @@
 import { Dropdown } from "../ui";
 import { Button } from "../ui";
 import { cn } from "@/utils";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { ROUTES } from "@/constants";
@@ -16,7 +16,7 @@ export default function LoginDropdown() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
