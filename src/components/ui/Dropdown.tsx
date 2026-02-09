@@ -1,8 +1,16 @@
-import { useState, useEffect, useRef, type ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import { cn } from "@/utils";
 
 interface DropdownProps {
-  trigger: ReactNode;
+  trigger: ReactElement<React.ButtonHTMLAttributes<HTMLButtonElement>>;
   children: ReactNode;
   className?: string;
 }
@@ -43,10 +51,16 @@ export default function Dropdown({
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <div onClick={() => setIsOpen(!isOpen)}>{trigger}</div>
+      {isValidElement(trigger) &&
+        cloneElement(trigger, {
+          onClick: () => setIsOpen(!isOpen),
+          "aria-expanded": isOpen,
+          "aria-haspopup": true,
+        } as React.ButtonHTMLAttributes<HTMLButtonElement>)}
 
       {isOpen && (
         <div
+          role="menu"
           className={cn(
             "absolute right-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-200 p-6 z-50",
             className,
