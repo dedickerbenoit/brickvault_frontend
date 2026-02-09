@@ -27,4 +27,16 @@ export default {
       trademark: "LEGO® est une marque déposée du groupe LEGO.",
     },
   },
+  charts: {
+    barChart: {
+      title: "Évolution de votre collection",
+      subtitle: "Nombre de sets par mois",
+      sets: "sets",
+    },
+    lineChart: {
+      title: "Valeur de collection",
+      subtitle: "Évolution en € (6 derniers mois)",
+      legend: "Valeur totale investie",
+    },
+  },
 } as const;
