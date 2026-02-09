@@ -5,6 +5,7 @@ import { LoginDropdown } from "@/components/auth";
 import { AuthProvider } from "@/contexts";
 import { APP_NAME, ROUTES } from "@/constants";
 import LandingPage from "@/pages/LandingPage";
+import RegisterPage from "@/pages/RegisterPage";
 import "@/locales/i18n";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ export default function App() {
           />
           <Routes>
             <Route path={ROUTES.HOME} element={<LandingPage />} />
+            <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
