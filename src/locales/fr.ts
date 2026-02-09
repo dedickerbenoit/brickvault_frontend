@@ -27,6 +27,94 @@ export default {
       trademark: "LEGO® est une marque déposée du groupe LEGO.",
     },
   },
+  landing: {
+    hero: {
+      title: "Gérez votre collection LEGO.",
+      titleHighlight: "Maximisez votre rentabilité.",
+      description:
+        "BrickVault centralise vos sets, achats, ventes et met en avant votre ROI en temps réel. La plateforme complète pour collectionneurs et investisseurs LEGO.",
+      cta: "Commencer gratuitement",
+      learnMore: "En savoir plus",
+    },
+    dashboard: {
+      title: "Dashboard BrickVault",
+      description: "Suivez l'évolution de votre collection en temps réel",
+    },
+    features: {
+      title: "Pourquoi BrickVault ?",
+      description:
+        "Une suite complète d'outils pour les collectionneurs et investisseurs LEGO.",
+      collection: {
+        title: "Gestion de collection",
+        description:
+          "Enregistrez vos sets, leurs caractéristiques, leur état et leur historique. Organisez votre collection par thème, lieu de stockage ou collections personnalisées.",
+      },
+      roi: {
+        title: "Suivi de rentabilité",
+        description:
+          "Visualisez vos achats, ventes et ROI sur des graphiques intuitifs. Analysez vos transactions et identifiez vos sets les plus rentables.",
+      },
+      alerts: {
+        title: "Alertes & opportunités",
+        description:
+          "Restez informé des meilleures offres et opportunités d'investissement. Suivez l'évolution des prix et maximisez votre retour sur investissement.",
+      },
+    },
+    insights: {
+      title: "Analyse intelligente de votre collection",
+      description:
+        "BrickVault vous aide à comprendre l'évolution de votre collection à travers des métriques claires et des visualisations puissantes.",
+      benefits: {
+        realTimeValue: "Valeur totale de votre collection en temps réel",
+        roiAnalysis: "ROI global et analyse par set individuel",
+        trends: "Tendances d'achat et de vente mensuelles",
+        stats: "Statistiques avancées par thème et année",
+      },
+    },
+    useCases: {
+      title: "Pour qui est BrickVault ?",
+      description:
+        "Que vous soyez collectionneur passionné, investisseur averti ou revendeur, BrickVault s'adapte à vos besoins.",
+      collectors: {
+        title: "Collectionneurs",
+        description:
+          "Organisez et cataloguez votre passion avec précision.",
+      },
+      investors: {
+        title: "Investisseurs",
+        description:
+          "Suivez votre ROI et optimisez votre portefeuille LEGO.",
+      },
+      resellers: {
+        title: "Revendeurs",
+        description:
+          "Gérez vos stocks et transactions en toute simplicité.",
+      },
+    },
+    cta: {
+      title: "Rejoignez BrickVault aujourd'hui",
+      description:
+        "Simplifiez la gestion de votre passion et profitez d'une vue claire sur la valeur de votre collection. Gratuit pour commencer.",
+      button: "Créer un compte gratuitement",
+    },
+    footer: {
+      description:
+        "La plateforme de gestion de collection LEGO pour collectionneurs et investisseurs.",
+      product: "Produit",
+      features: "Fonctionnalités",
+      createAccount: "Créer un compte",
+      login: "Se connecter",
+      legal: "Légal",
+      privacy: "Confidentialité",
+      terms: "Conditions d'utilisation",
+      support: "Support",
+      contact: "Contact",
+      faq: "FAQ",
+      copyright: "© {{year}} BrickVault. Tous droits réservés.",
+      trademark:
+        "LEGO® est une marque déposée du groupe LEGO. BrickVault n'est pas affilié au groupe LEGO.",
+    },
+  },
   charts: {
     barChart: {
       title: "Évolution de votre collection",
