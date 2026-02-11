@@ -79,6 +79,15 @@ export default {
     passwordMismatch: "Les mots de passe ne correspondent pas",
   },
   layout: {
+    nav: {
+      dashboard: "Dashboard",
+      sets: "Sets",
+      collections: "Collections",
+      wishlist: "Wishlist",
+    },
+    profile: {
+      logout: "Déconnexion",
+    },
     footer: {
       about: "À propos",
       aboutDescription:
@@ -90,6 +99,20 @@ export default {
       resources: "Ressources",
       copyright: "© {{year}} BrickVault. Tous droits réservés.",
       trademark: "LEGO® est une marque déposée du groupe LEGO.",
+    },
+  },
+  dashboard: {
+    welcome: "Bienvenue, {{name}} !",
+    stats: {
+      sets: "Sets possédés",
+      totalValue: "Valeur totale",
+      collections: "Collections",
+      wishlist: "Wishlist",
+    },
+    empty: {
+      title: "Commencez votre collection",
+      description: "Ajoutez votre premier set LEGO pour commencer à suivre votre collection et sa valeur.",
+      cta: "Ajouter un set",
     },
   },
   landing: {
