@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { Button, PasswordStrengthIndicator } from "@/components/ui";
 import { CheckCircleIcon } from "@heroicons/react/16/solid";
 import { ROUTES } from "@/constants";
-import { cn } from "@/utils";
+import { cn, isPasswordValid, passwordsMatch as checkPasswordsMatch } from "@/utils";
+import type { RegisterData } from "@/services/authService";
 import axios from "axios";
 
 export default function RegisterForm() {
@@ -21,15 +23,34 @@ export default function RegisterForm() {
     password_confirmation: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
+
+  const mutation = useMutation({
+    mutationFn: (data: RegisterData) => register(data),
+    onSuccess: () => navigate(ROUTES.HOME),
+    onError: (error) => {
+      if (axios.isAxiosError(error) && error.response?.status === 422) {
+        const serverErrors: Record<string, string> = {};
+        const validationErrors = error.response.data.errors as Record<
+          string,
+          string[]
+        >;
+        for (const [field, messages] of Object.entries(validationErrors)) {
+          serverErrors[field] = messages[0];
+        }
+        setErrors(serverErrors);
+      }
+    },
+  });
 
   const updateField = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => {
       const next = { ...prev };
       delete next[field];
+      if (field === "password") delete next.password_confirmation;
       return next;
     });
+    if (mutation.isError) mutation.reset();
   };
 
   const validate = (): Record<string, string> => {
@@ -56,7 +77,7 @@ export default function RegisterForm() {
     return newErrors;
   };
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const clientErrors = validate();
@@ -65,33 +86,19 @@ export default function RegisterForm() {
       return;
     }
 
-    setIsLoading(true);
     setErrors({});
-
-    try {
-      await register(formData);
-      navigate(ROUTES.HOME);
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 422) {
-        const serverErrors: Record<string, string> = {};
-        const validationErrors = error.response.data.errors as Record<
-          string,
-          string[]
-        >;
-        for (const [field, messages] of Object.entries(validationErrors)) {
-          serverErrors[field] = messages[0];
-        }
-        setErrors(serverErrors);
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    mutation.mutate(formData);
   };
 
-  const passwordsMatch =
-    formData.password !== "" &&
-    formData.password_confirmation !== "" &&
-    formData.password === formData.password_confirmation;
+  const passwordValid = isPasswordValid(formData.password);
+  const passwordsMatch = checkPasswordsMatch(formData.password, formData.password_confirmation);
+
+  const isFormValid =
+    formData.first_name.trim() !== "" &&
+    formData.name.trim() !== "" &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+    passwordValid &&
+    passwordsMatch;
 
   return (
     <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
@@ -236,7 +243,7 @@ export default function RegisterForm() {
           </div>
 
           {/* Submit */}
-          <Button type="submit" size="md" fullWidth loading={isLoading}>
+          <Button type="submit" size="md" fullWidth loading={mutation.isPending} disabled={!isFormValid}>
             {t("auth.register.submit")}
           </Button>
         </form>

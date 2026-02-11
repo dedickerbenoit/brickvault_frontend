@@ -2,6 +2,8 @@ export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
   REGISTER: "/register",
+  RESET_PASSWORD: "/reset-password",
+  FORGOT_PASSWORD: "/forgot-password",
 } as const;
 
 export const API_ROUTES = {
@@ -9,5 +11,7 @@ export const API_ROUTES = {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
     LOGOUT: "/auth/logout",
+    RESET_PASSWORD: "/auth/reset-password",
+    FORGOT_PASSWORD: "/auth/forgot-password",
   },
 } as const;

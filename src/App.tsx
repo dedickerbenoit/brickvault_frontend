@@ -6,6 +6,8 @@ import { AuthProvider } from "@/contexts";
 import { APP_NAME, ROUTES } from "@/constants";
 import LandingPage from "@/pages/LandingPage";
 import RegisterPage from "@/pages/RegisterPage";
+import ForgotPasswordPage from "@/pages/ForgotPasswordPage";
+import ResetPasswordPage from "@/pages/ResetPasswordPage";
 import "@/locales/i18n";
 
 const queryClient = new QueryClient();
@@ -31,6 +33,8 @@ export default function App() {
           <Routes>
             <Route path={ROUTES.HOME} element={<LandingPage />} />
             <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+            <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPasswordPage />} />
+            <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
