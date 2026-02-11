@@ -1,18 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/16/solid";
-import { cn } from "@/utils";
+import { cn, PASSWORD_RULES } from "@/utils";
 
 interface PasswordStrengthIndicatorProps {
   password: string;
   className?: string;
 }
-
-const RULES = [
-  { key: "minLength", test: (p: string) => p.length >= 8 },
-  { key: "uppercase", test: (p: string) => /[A-Z]/.test(p) },
-  { key: "digit", test: (p: string) => /[0-9]/.test(p) },
-  { key: "specialChar", test: (p: string) => /[@$!%*?&]/.test(p) },
-] as const;
 
 export default function PasswordStrengthIndicator({
   password,
@@ -20,7 +13,7 @@ export default function PasswordStrengthIndicator({
 }: PasswordStrengthIndicatorProps) {
   const { t } = useTranslation();
 
-  const passedCount = RULES.filter((rule) => rule.test(password)).length;
+  const passedCount = PASSWORD_RULES.filter((rule) => rule.test(password)).length;
 
   const barColor =
     passedCount <= 1
@@ -35,7 +28,7 @@ export default function PasswordStrengthIndicator({
     <div className={cn("space-y-2", className)}>
       {/* Progress bar */}
       <div className="flex gap-1">
-        {RULES.map((_, i) => (
+        {PASSWORD_RULES.map((_, i) => (
           <div
             key={i}
             className={cn(
@@ -48,7 +41,7 @@ export default function PasswordStrengthIndicator({
 
       {/* Rules list */}
       <ul className="space-y-1">
-        {RULES.map((rule) => {
+        {PASSWORD_RULES.map((rule) => {
           const passed = rule.test(password);
           return (
             <li
