@@ -2,6 +2,7 @@ import { Dropdown } from "../ui";
 import { Button } from "../ui";
 import { cn } from "@/utils";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { ROUTES } from "@/constants";
@@ -13,21 +14,15 @@ export default function LoginDropdown() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const mutation = useMutation({
+    mutationFn: ({ email, password }: { email: string; password: string }) =>
+      login(email, password),
+  });
+
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
-    setIsLoading(true);
-
-    try {
-      await login(formData.email, formData.password);
-    } catch {
-      setError(t("auth.login.error"));
-    } finally {
-      setIsLoading(false);
-    }
+    mutation.mutate(formData);
   };
 
   return (
@@ -82,11 +77,23 @@ export default function LoginDropdown() {
           />
         </div>
 
+        {/* Forgot Password */}
+        <div className="text-right">
+          <a
+            href={ROUTES.FORGOT_PASSWORD}
+            className="text-xs text-gray-500 hover:text-primary-500 transition-colors"
+          >
+            {t("auth.login.forgotPassword")}
+          </a>
+        </div>
+
         {/* Error */}
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {mutation.isError && (
+          <p className="text-sm text-red-600">{t("auth.login.error")}</p>
+        )}
 
         {/* Submit */}
-        <Button type="submit" size="md" fullWidth loading={isLoading}>
+        <Button type="submit" size="md" fullWidth loading={mutation.isPending}>
           {t("auth.login.submit")}
         </Button>
       </form>
