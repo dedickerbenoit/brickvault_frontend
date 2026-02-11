@@ -22,8 +22,7 @@ export default function EmptyState({
   className,
 }: EmptyStateProps) {
   return (
-    <div
-      role="status"
+    <section
       className={cn(
         "flex flex-col items-center justify-center text-center py-16 px-6",
         className,
@@ -41,6 +40,6 @@ export default function EmptyState({
           </Button>
         </div>
       )}
-    </div>
+    </section>
   );
 }
