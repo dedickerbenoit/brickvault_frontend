@@ -1,0 +1,21 @@
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "@/hooks";
+import { ROUTES } from "@/constants";
+
+export default function ProtectedRoute() {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to={ROUTES.HOME} replace />;
+  }
+
+  return <Outlet />;
+}
