@@ -2,6 +2,7 @@ import { useState, useCallback, type ReactNode, useEffect } from "react";
 import {
   getCurrentUser,
   login as loginApi,
+  logout as logoutApi,
   register as registerApi,
   type RegisterData,
 } from "@/services/authService";
@@ -35,9 +36,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(response.user);
   }, []);
 
-  const logout = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-    setUser(null);
+  const logout = useCallback(async () => {
+    try {
+      await logoutApi();
+    } finally {
+      localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
+      setUser(null);
+    }
   }, []);
 
   const register = useCallback(async (data: RegisterData) => {

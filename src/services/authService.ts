@@ -19,6 +19,10 @@ export async function login(email: string, password: string): Promise<LoginRespo
     return data;
 }
 
+export async function logout():Promise<void> {
+    await api.post(API_ROUTES.AUTH.LOGOUT);
+}
+
 export interface RegisterData {
     first_name: string;
     name: string;
