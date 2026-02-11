@@ -1,5 +1,6 @@
-import { useState, useCallback, type ReactNode } from "react";
+import { useState, useCallback, type ReactNode, useEffect } from "react";
 import {
+  getCurrentUser,
   login as loginApi,
   register as registerApi,
   type RegisterData,
@@ -15,6 +16,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     email: string;
     created_at: string;
   } | null>(null);
+
+  const hasToken = !!localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+  const [isLoading, setIsLoading] = useState(hasToken);
+
+  useEffect(() => {
+    if (!hasToken) return;
+
+    getCurrentUser()
+      .then((response) => setUser(response.user))
+      .catch(() => localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN))
+      .finally(() => setIsLoading(false));
+  }, [hasToken]);
 
   const login = useCallback(async (email: string, password: string) => {
     const response = await loginApi(email, password);
@@ -36,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated: !!user, login, register, logout }}
+      value={{ user, isAuthenticated: !!user, isLoading, login, register, logout }}
     >
       {children}
     </AuthContext.Provider>

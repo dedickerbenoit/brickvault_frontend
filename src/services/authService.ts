@@ -43,6 +43,21 @@ export async function register(data: RegisterData): Promise<RegisterResponse> {
     return responseData;
 }
 
+interface GetCurrentUserResponse {
+    user: {
+        id: number;
+        first_name: string;
+        name: string;
+        email: string;
+        created_at: string;
+    }
+}
+
+export async function getCurrentUser(): Promise<GetCurrentUserResponse> {
+    const { data } = await api.get<GetCurrentUserResponse>(API_ROUTES.AUTH.USER);
+    return data;
+}
+
 interface ForgotPasswordData {
     email: string;
 }
