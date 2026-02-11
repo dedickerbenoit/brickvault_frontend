@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/utils";
 
 interface StatCardProps {
@@ -44,7 +45,7 @@ export default function StatCard({
   );
 
   if (link) {
-    return <a href={link}>{content}</a>;
+    return <Link to={link}>{content}</Link>;
   }
 
   return content;

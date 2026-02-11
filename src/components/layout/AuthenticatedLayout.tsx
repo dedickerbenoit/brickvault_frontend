@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { ROUTES, APP_NAME } from "@/constants";
@@ -14,17 +14,17 @@ export default function AuthenticatedLayout() {
       <Header
         sticky
         logo={
-          <a href={ROUTES.DASHBOARD}>
+          <Link to={ROUTES.DASHBOARD}>
             <img
               src="/logobrickvault.png"
               alt={APP_NAME}
               className="w-14 h-14"
             />
-          </a>
+          </Link>
         }
         navigation={
           <>
-            <NavLink href={ROUTES.DASHBOARD} active>
+            <NavLink to={ROUTES.DASHBOARD} active>
               {t("layout.nav.dashboard")}
             </NavLink>
           </>
