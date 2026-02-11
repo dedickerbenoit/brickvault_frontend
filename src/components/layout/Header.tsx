@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/utils";
 
 type HeaderVariant = NonNullable<HeaderProps["variant"]>;
@@ -55,22 +56,22 @@ export default function Header({
   );
 }
 
-interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+interface NavLinkProps {
+  to: string;
   children: ReactNode;
   active?: boolean;
+  className?: string;
 }
 
 export function NavLink({
-  href,
+  to,
   children,
   active = false,
   className,
-  ...rest
 }: NavLinkProps) {
   return (
-    <a
-      href={href}
+    <Link
+      to={to}
       className={cn(
         "px-3 py-2 rounded-md text-sm font-medium transition-colors",
         active
@@ -78,9 +79,8 @@ export function NavLink({
           : "text-gray-700 hover:text-primary-500 hover:bg-gray-100",
         className,
       )}
-      {...rest}
     >
       {children}
-    </a>
+    </Link>
   );
 }

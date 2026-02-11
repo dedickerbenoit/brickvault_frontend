@@ -26,7 +26,7 @@ export default function RegisterForm() {
 
   const mutation = useMutation({
     mutationFn: (data: RegisterData) => register(data),
-    onSuccess: () => navigate(ROUTES.HOME),
+    onSuccess: () => navigate(ROUTES.DASHBOARD),
     onError: (error) => {
       if (axios.isAxiosError(error) && error.response?.status === 422) {
         const serverErrors: Record<string, string> = {};

@@ -19,6 +19,10 @@ export async function login(email: string, password: string): Promise<LoginRespo
     return data;
 }
 
+export async function logout():Promise<void> {
+    await api.post(API_ROUTES.AUTH.LOGOUT);
+}
+
 export interface RegisterData {
     first_name: string;
     name: string;
@@ -41,6 +45,21 @@ interface RegisterResponse {
 export async function register(data: RegisterData): Promise<RegisterResponse> {
     const { data: responseData } = await api.post<RegisterResponse>(API_ROUTES.AUTH.REGISTER, data);
     return responseData;
+}
+
+interface GetCurrentUserResponse {
+    user: {
+        id: number;
+        first_name: string;
+        name: string;
+        email: string;
+        created_at: string;
+    }
+}
+
+export async function getCurrentUser(): Promise<GetCurrentUserResponse> {
+    const { data } = await api.get<GetCurrentUserResponse>(API_ROUTES.AUTH.USER);
+    return data;
 }
 
 interface ForgotPasswordData {

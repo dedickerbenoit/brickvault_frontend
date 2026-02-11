@@ -4,6 +4,7 @@ export const ROUTES = {
   REGISTER: "/register",
   RESET_PASSWORD: "/reset-password",
   FORGOT_PASSWORD: "/forgot-password",
+  DASHBOARD: "/dashboard",
 } as const;
 
 export const API_ROUTES = {
@@ -11,6 +12,7 @@ export const API_ROUTES = {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
     LOGOUT: "/auth/logout",
+    USER: "/auth/user",
     RESET_PASSWORD: "/auth/reset-password",
     FORGOT_PASSWORD: "/auth/forgot-password",
   },

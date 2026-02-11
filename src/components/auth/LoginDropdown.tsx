@@ -4,12 +4,14 @@ import { cn } from "@/utils";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks";
 import { ROUTES } from "@/constants";
 
 export default function LoginDropdown() {
   const { t } = useTranslation();
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,6 +20,7 @@ export default function LoginDropdown() {
   const mutation = useMutation({
     mutationFn: ({ email, password }: { email: string; password: string }) =>
       login(email, password),
+    onSuccess: () => navigate(ROUTES.DASHBOARD),
   });
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
