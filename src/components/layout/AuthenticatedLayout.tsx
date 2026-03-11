@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { ROUTES, APP_NAME } from "@/constants";
@@ -8,6 +8,14 @@ import { Dropdown } from "../ui";
 export default function AuthenticatedLayout() {
   const { t } = useTranslation();
   const { user, logout } = useAuth();
+  const { pathname } = useLocation();
+
+  const navLinks = [
+    { to: ROUTES.DASHBOARD, label: t("layout.nav.dashboard") },
+    { to: ROUTES.SETS, label: t("layout.nav.sets") },
+    { to: ROUTES.COLLECTIONS, label: t("layout.nav.collections") },
+    { to: ROUTES.WISHLIST, label: t("layout.nav.wishlist") },
+  ];
 
   return (
     <>
@@ -24,9 +32,15 @@ export default function AuthenticatedLayout() {
         }
         navigation={
           <>
-            <NavLink to={ROUTES.DASHBOARD} active>
-              {t("layout.nav.dashboard")}
-            </NavLink>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                active={pathname === link.to}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </>
         }
         actions={

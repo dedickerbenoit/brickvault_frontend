@@ -11,6 +11,9 @@ import RegisterPage from "@/pages/RegisterPage";
 import ForgotPasswordPage from "@/pages/ForgotPasswordPage";
 import ResetPasswordPage from "@/pages/ResetPasswordPage";
 import DashboardPage from "@/pages/DashboardPage";
+import SetsPage from "@/pages/SetsPage";
+import CollectionsPage from "@/pages/CollectionsPage";
+import WishlistPage from "@/pages/WishlistPage";
 import "@/locales/i18n";
 
 const queryClient = new QueryClient();
@@ -48,6 +51,9 @@ export default function App() {
             <Route element={<ProtectedRoute />}>
               <Route element={<AuthenticatedLayout />}>
                 <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+                <Route path={ROUTES.SETS} element={<SetsPage />} />
+                <Route path={ROUTES.COLLECTIONS} element={<CollectionsPage />} />
+                <Route path={ROUTES.WISHLIST} element={<WishlistPage />} />
               </Route>
             </Route>
 
