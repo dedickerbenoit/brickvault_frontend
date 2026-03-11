@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks";
 import { Button, PasswordStrengthIndicator } from "@/components/ui";
-import { CheckCircleIcon } from "@heroicons/react/16/solid";
+import { CheckCircleIcon } from "@/assets/icons";
 import { ROUTES } from "@/constants";
 import { cn, isPasswordValid, passwordsMatch as checkPasswordsMatch } from "@/utils";
 import type { RegisterData } from "@/services/authService";

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { CheckIcon } from "@heroicons/react/16/solid";
+import { CheckIcon } from "@/assets/icons";
 
 const BENEFITS = ["catalog", "roi", "free"] as const;
 
