@@ -203,6 +203,27 @@ export default {
         "LEGO® est une marque déposée du groupe LEGO. BrickVault n'est pas affilié au groupe LEGO.",
     },
   },
+  sets: {
+    title: "Mes sets",
+    empty: {
+      title: "Aucun set",
+      description: "Vous n'avez pas encore ajouté de set à votre collection.",
+    },
+  },
+  collections: {
+    title: "Mes collections",
+    empty: {
+      title: "Aucune collection",
+      description: "Créez votre première collection pour organiser vos sets.",
+    },
+  },
+  wishlist: {
+    title: "Ma wishlist",
+    empty: {
+      title: "Wishlist vide",
+      description: "Ajoutez des sets à votre wishlist pour les retrouver facilement.",
+    },
+  },
   charts: {
     barChart: {
       title: "Évolution de votre collection",

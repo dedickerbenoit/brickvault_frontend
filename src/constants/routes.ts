@@ -5,6 +5,9 @@ export const ROUTES = {
   RESET_PASSWORD: "/reset-password",
   FORGOT_PASSWORD: "/forgot-password",
   DASHBOARD: "/dashboard",
+  SETS: "/sets",
+  COLLECTIONS: "/collections",
+  WISHLIST: "/wishlist",
 } as const;
 
 export const API_ROUTES = {
@@ -15,5 +18,8 @@ export const API_ROUTES = {
     USER: "/auth/user",
     RESET_PASSWORD: "/auth/reset-password",
     FORGOT_PASSWORD: "/auth/forgot-password",
+  },
+  DASHBOARD: {
+    STATS: "/dashboard/stats",
   },
 } as const;

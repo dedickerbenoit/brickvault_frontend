@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/16/solid";
+import { CheckCircleIcon, XCircleIcon } from "@/assets/icons";
 import { cn, PASSWORD_RULES } from "@/utils";
 
 interface PasswordStrengthIndicatorProps {
