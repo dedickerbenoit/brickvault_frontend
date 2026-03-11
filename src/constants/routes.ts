@@ -22,4 +22,8 @@ export const API_ROUTES = {
   DASHBOARD: {
     STATS: "/dashboard/stats",
   },
+  USER_SETS: {
+    LIST: "/user-sets",
+    SEARCH: "/user-sets/search",
+  },
 } as const;

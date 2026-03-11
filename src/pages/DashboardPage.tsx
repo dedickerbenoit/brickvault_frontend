@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import { useAuth, useDashboardStats } from "@/hooks";
 import { StatCard, EmptyState } from "@/components/ui";
 import { ROUTES } from "@/constants";
@@ -6,6 +7,7 @@ import { CubeIcon, CurrencyEuroIcon, FolderIcon, StarIcon } from "@/assets/icons
 
 export default function DashboardPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data: stats, isLoading } = useDashboardStats();
 
@@ -63,7 +65,7 @@ export default function DashboardPage() {
             description={t("dashboard.empty.description")}
             action={{
               label: t("dashboard.empty.cta"),
-              onClick: () => {},
+              onClick: () => navigate(ROUTES.SETS),
             }}
           />
         </div>

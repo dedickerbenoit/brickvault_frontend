@@ -203,11 +203,71 @@ export default {
         "LEGO® est une marque déposée du groupe LEGO. BrickVault n'est pas affilié au groupe LEGO.",
     },
   },
+  common: {
+    cancel: "Annuler",
+  },
   sets: {
     title: "Mes sets",
     empty: {
       title: "Aucun set",
       description: "Vous n'avez pas encore ajouté de set à votre collection.",
+      cta: "Ajouter un set",
+    },
+    add: {
+      title: "Ajouter un set",
+      button: "Ajouter un set",
+    },
+    edit: {
+      title: "Modifier le set",
+      button: "Enregistrer",
+    },
+    delete: {
+      title: "Supprimer ce set ?",
+      description: "Êtes-vous sûr de vouloir supprimer « {{name}} » de votre collection ? Cette action est irréversible.",
+      button: "Supprimer",
+    },
+    form: {
+      searchSet: "Rechercher un set",
+      searchPlaceholder: "Numéro ou nom du set...",
+      purchasePrice: "Prix d'achat (€)",
+      purchaseDate: "Date d'achat",
+      condition: "État",
+      conditionNew: "Neuf",
+      conditionOpened: "Ouvert",
+      conditionBuilt: "Construit",
+      notes: "Notes",
+      notesPlaceholder: "Notes supplémentaires...",
+    },
+    search: {
+      loading: "Recherche en cours...",
+      noResults: "Aucun set trouvé",
+      pieces: "{{count}} pcs",
+    },
+    list: {
+      tableHeader: {
+        set: "Set",
+        theme: "Thème",
+        condition: "État",
+        purchasePrice: "Prix d'achat",
+        purchaseDate: "Date d'achat",
+        actions: "Actions",
+      },
+      actions: {
+        edit: "Modifier",
+        delete: "Supprimer",
+      },
+      pagination: {
+        showing: "{{from}} à {{to}} sur {{total}} sets",
+        prev: "Précédent",
+        next: "Suivant",
+      },
+    },
+    errors: {
+      loadingFailed: "Impossible de charger vos sets. Veuillez réessayer.",
+      addingFailed: "Impossible d'ajouter le set. Veuillez réessayer.",
+      updatingFailed: "Impossible de modifier le set. Veuillez réessayer.",
+      deleteFailed: "Impossible de supprimer le set. Veuillez réessayer.",
+      noSetSelected: "Veuillez sélectionner un set.",
     },
   },
   collections: {
