@@ -7,6 +7,7 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   SETS: "/sets",
   COLLECTIONS: "/collections",
+  COLLECTION_DETAIL: "/collections/:id",
   WISHLIST: "/wishlist",
 } as const;
 
@@ -25,5 +26,8 @@ export const API_ROUTES = {
   USER_SETS: {
     LIST: "/user-sets",
     SEARCH: "/user-sets/search",
+  },
+  COLLECTIONS: {
+    LIST: "/user-collections",
   },
 } as const;

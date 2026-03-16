@@ -255,6 +255,7 @@ export default {
       actions: {
         edit: "Modifier",
         delete: "Supprimer",
+        addToCollection: "Collection",
       },
       pagination: {
         showing: "{{from}} à {{to}} sur {{total}} sets",
@@ -272,9 +273,64 @@ export default {
   },
   collections: {
     title: "Mes collections",
+    create: "Créer une collection",
+    edit: "Modifier",
+    delete: "Supprimer",
     empty: {
       title: "Aucune collection",
       description: "Créez votre première collection pour organiser vos sets.",
+      cta: "Créer une collection",
+    },
+    form: {
+      createTitle: "Nouvelle collection",
+      editTitle: "Modifier la collection",
+      name: "Nom",
+      namePlaceholder: "Ma collection...",
+      description: "Description",
+      descriptionPlaceholder: "Description optionnelle...",
+      color: "Couleur",
+      createButton: "Créer",
+      editButton: "Enregistrer",
+    },
+    deleteDialog: {
+      title: "Supprimer cette collection ?",
+      description: "Êtes-vous sûr de vouloir supprimer « {{name}} » ?",
+      setsNotDeleted: "Les sets de cette collection ne seront pas supprimés de votre inventaire.",
+      button: "Supprimer",
+    },
+    detail: {
+      back: "Retour aux collections",
+      setsCount: "sets",
+      removeSet: "Retirer",
+      empty: {
+        title: "Collection vide",
+        description: "Ajoutez des sets depuis la page Sets pour remplir cette collection.",
+      },
+    },
+    addToCollection: {
+      title: "Ajouter à une collection",
+      noCollections: "Vous n'avez pas encore de collection.",
+      createFirst: "Créer une collection",
+      added: "Ajouté",
+    },
+    colors: {
+      blue: "Bleu",
+      red: "Rouge",
+      green: "Vert",
+      yellow: "Jaune",
+      purple: "Violet",
+      pink: "Rose",
+      indigo: "Indigo",
+      teal: "Sarcelle",
+      orange: "Orange",
+      gray: "Gris",
+    },
+    errors: {
+      loadingFailed: "Impossible de charger vos collections. Veuillez réessayer.",
+      createFailed: "Impossible de créer la collection. Veuillez réessayer.",
+      updateFailed: "Impossible de modifier la collection. Veuillez réessayer.",
+      deleteFailed: "Impossible de supprimer la collection. Veuillez réessayer.",
+      nameRequired: "Le nom est requis.",
     },
   },
   wishlist: {
