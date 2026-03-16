@@ -27,6 +27,7 @@ export default function CollectionDetailPage() {
     useState<CollectionData | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deleteError, setDeleteError] = useState("");
+  const [removingSetId, setRemovingSetId] = useState<number | null>(null);
 
   if (isLoading) {
     return (
@@ -180,13 +181,17 @@ export default function CollectionDetailPage() {
                             size="sm"
                             variant="text"
                             className="text-red-600 hover:bg-red-50"
-                            loading={removeMutation.isPending}
-                            onClick={() =>
-                              removeMutation.mutate({
-                                collectionId: collection.id,
-                                userSetId: userSet.id,
-                              })
-                            }
+                            loading={removingSetId === userSet.id && removeMutation.isPending}
+                            onClick={() => {
+                              setRemovingSetId(userSet.id);
+                              removeMutation.mutate(
+                                {
+                                  collectionId: collection.id,
+                                  userSetId: userSet.id,
+                                },
+                                { onSettled: () => setRemovingSetId(null) },
+                              );
+                            }}
                           >
                             {t("collections.detail.removeSet")}
                           </Button>

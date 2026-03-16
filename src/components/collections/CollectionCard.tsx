@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { PencilIcon, TrashIcon } from "@/assets/icons";
-import { getColorClasses } from "@/constants";
+import { getColorClasses, ROUTES } from "@/constants";
 import type { CollectionData } from "@/services/collectionService";
 
 interface CollectionCardProps {
@@ -22,7 +22,7 @@ export default function CollectionCard({
   return (
     <div
       className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-      onClick={() => navigate(`/collections/${collection.id}`)}
+      onClick={() => navigate(ROUTES.COLLECTION_DETAIL.replace(":id", String(collection.id)))}
     >
       <div className={`h-2 ${colors.dot}`} />
       <div className="p-5">

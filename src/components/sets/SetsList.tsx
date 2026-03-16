@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useUserSets, useDeleteUserSet } from "@/hooks";
 import { Button, EmptyState } from "@/components/ui";
 import { CubeIcon } from "@/assets/icons";
+import { ROUTES } from "@/constants";
 import type { UserSetData } from "@/services";
 import SetRow from "./SetRow";
 import SetForm from "./SetForm";
@@ -11,6 +13,7 @@ import { AddToCollectionModal } from "@/components/collections";
 
 export default function SetsList() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const { data, isLoading, error } = useUserSets(page);
   const deleteMutation = useDeleteUserSet();
@@ -190,7 +193,10 @@ export default function SetsList() {
         <AddToCollectionModal
           userSet={addingToCollection}
           onClose={() => setAddingToCollection(null)}
-          onCreateCollection={() => setShowAddForm(false)}
+          onCreateCollection={() => {
+            setAddingToCollection(null);
+            navigate(ROUTES.COLLECTIONS);
+          }}
         />
       )}
     </>
