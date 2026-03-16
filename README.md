@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+  # BrickVault
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  Application web de gestion de collections LEGO. Permet de suivre son inventaire de sets, les organiser en collections
+  personnalisées et gérer sa wishlist.
 
-Currently, two official plugins are available:
+  ## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - Authentification complète (inscription, connexion, réinitialisation de mot de passe)
+  - Inventaire de sets LEGO avec recherche et ajout via la base Rebrickable
+  - Collections personnalisées avec couleurs et ajout/retrait de sets
+  - Tableau de bord avec statistiques (nombre de sets, valeur totale, collections)
+  - Traductions multilingues des noms de sets et thèmes (FR/EN)
+  - Interface responsive
 
-## React Compiler
+  ## Stack technique
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  **Backend**
+  - PHP 8.2 / Laravel 12
+  - MySQL 8.0
+  - Redis 7 (cache, sessions, queue)
+  - Laravel Passport (authentification API)
+  - PHPUnit (tests) / Pint (formatage)
 
-## Expanding the ESLint configuration
+  **Frontend**
+  - React 19 / TypeScript
+  - Vite
+  - Tailwind CSS v4
+  - React Router v7
+  - React Query (TanStack)
+  - i18next (traductions)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  **Infrastructure**
+  - Docker / Docker Compose
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  ## Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  ### Prérequis
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  - Docker et Docker Compose
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  ### Démarrage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  ```bash
+  # Cloner les repos
+  git clone git@github.com:dedickerbenoit/brickvault_backend.git backend
+  git clone git@github.com:dedickerbenoit/brickvault_frontend.git frontend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  # Configurer le backend
+  cp backend/.env.example backend/.env
+
+  # Lancer les containers
+  docker compose up -d
+
+  # Installer les dépendances backend
+  docker exec brickvault-backend composer install
+  docker exec brickvault-backend php artisan key:generate
+  docker exec brickvault-backend php artisan migrate
+  docker exec brickvault-backend php artisan passport:install
+
+  # Installer les dépendances frontend
+  docker exec brickvault-frontend npm install
+
+  Accès
+  ┌────────────┬───────────────────────┐
+  │  Service   │          URL          │
+  ├────────────┼───────────────────────┤
+  │ Frontend   │ http://localhost:5173 │
+  ├────────────┼───────────────────────┤
+  │ API        │ http://localhost:8000 │
+  ├────────────┼───────────────────────┤
+  │ phpMyAdmin │ http://localhost:8081 │
+  ├────────────┼───────────────────────┤
+  │ Mailpit    │ http://localhost:8025 │
+  └────────────┴───────────────────────┘
+  Tests
+
+  # Backend
+  docker exec brickvault-backend php artisan test
+
+  # Formatage
+  docker exec brickvault-backend ./vendor/bin/pint
