@@ -13,6 +13,7 @@ import ResetPasswordPage from "@/pages/ResetPasswordPage";
 import DashboardPage from "@/pages/DashboardPage";
 import SetsPage from "@/pages/SetsPage";
 import CollectionsPage from "@/pages/CollectionsPage";
+import CollectionDetailPage from "@/pages/CollectionDetailPage";
 import WishlistPage from "@/pages/WishlistPage";
 import "@/locales/i18n";
 
@@ -53,6 +54,7 @@ export default function App() {
                 <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
                 <Route path={ROUTES.SETS} element={<SetsPage />} />
                 <Route path={ROUTES.COLLECTIONS} element={<CollectionsPage />} />
+                <Route path={ROUTES.COLLECTION_DETAIL} element={<CollectionDetailPage />} />
                 <Route path={ROUTES.WISHLIST} element={<WishlistPage />} />
               </Route>
             </Route>

@@ -7,6 +7,7 @@ import type { UserSetData } from "@/services";
 import SetRow from "./SetRow";
 import SetForm from "./SetForm";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
+import { AddToCollectionModal } from "@/components/collections";
 
 export default function SetsList() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ export default function SetsList() {
   const [editingSet, setEditingSet] = useState<UserSetData | null>(null);
   const [deletingSet, setDeletingSet] = useState<UserSetData | null>(null);
   const [deleteError, setDeleteError] = useState("");
+  const [addingToCollection, setAddingToCollection] = useState<UserSetData | null>(null);
 
   if (isLoading) {
     return (
@@ -106,6 +108,7 @@ export default function SetsList() {
                   userSet={userSet}
                   onEdit={() => setEditingSet(userSet)}
                   onDelete={() => setDeletingSet(userSet)}
+                  onAddToCollection={() => setAddingToCollection(userSet)}
                 />
               ))}
             </tbody>
@@ -180,6 +183,14 @@ export default function SetsList() {
             setDeletingSet(null);
             setDeleteError("");
           }}
+        />
+      )}
+
+      {addingToCollection && (
+        <AddToCollectionModal
+          userSet={addingToCollection}
+          onClose={() => setAddingToCollection(null)}
+          onCreateCollection={() => setShowAddForm(false)}
         />
       )}
     </>

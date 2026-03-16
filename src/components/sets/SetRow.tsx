@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui";
-import { CubeIcon } from "@/assets/icons";
+import { CubeIcon, FolderPlusIcon, PencilIcon, TrashIcon } from "@/assets/icons";
 import type { UserSetData } from "@/services";
 
 const conditionColors: Record<string, string> = {
@@ -13,9 +12,10 @@ interface SetRowProps {
   userSet: UserSetData;
   onEdit: () => void;
   onDelete: () => void;
+  onAddToCollection?: () => void;
 }
 
-export default function SetRow({ userSet, onEdit, onDelete }: SetRowProps) {
+export default function SetRow({ userSet, onEdit, onDelete, onAddToCollection }: SetRowProps) {
   const { t } = useTranslation();
 
   const conditionLabels: Record<string, string> = {
@@ -69,12 +69,32 @@ export default function SetRow({ userSet, onEdit, onDelete }: SetRowProps) {
       </td>
       <td className="px-4 py-3">
         <div className="flex justify-end gap-1">
-          <Button size="sm" variant="text" onClick={onEdit}>
-            {t("sets.list.actions.edit")}
-          </Button>
-          <Button size="sm" variant="text" onClick={onDelete} className="text-red-600 hover:bg-red-50">
-            {t("sets.list.actions.delete")}
-          </Button>
+          {onAddToCollection && (
+            <button
+              type="button"
+              onClick={onAddToCollection}
+              title={t("sets.list.actions.addToCollection")}
+              className="p-2 rounded-full text-gray-500 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer"
+            >
+              <FolderPlusIcon className="w-5 h-5" />
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={onEdit}
+            title={t("sets.list.actions.edit")}
+            className="p-2 rounded-full text-gray-500 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer"
+          >
+            <PencilIcon className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={onDelete}
+            title={t("sets.list.actions.delete")}
+            className="p-2 rounded-full text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+          >
+            <TrashIcon className="w-5 h-5" />
+          </button>
         </div>
       </td>
     </tr>

@@ -16,3 +16,17 @@ export type {
   StoreUserSetPayload,
   UpdateUserSetPayload,
 } from "./userSetService";
+export {
+  getCollections,
+  getCollection,
+  createCollection,
+  updateCollection,
+  deleteCollection,
+  addSetToCollection,
+  removeSetFromCollection,
+} from "./collectionService";
+export type {
+  CollectionData,
+  StoreCollectionPayload,
+  UpdateCollectionPayload,
+} from "./collectionService";
