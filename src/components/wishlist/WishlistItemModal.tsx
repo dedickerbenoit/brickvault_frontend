@@ -52,7 +52,7 @@ export default function WishlistItemModal({
       try {
         const results = await searchSets(searchQuery, { signal: controller.signal });
         setSearchResults(results);
-      } catch (err) {
+      } catch {
         if (!controller.signal.aborted) {
           setSearchResults([]);
         }
