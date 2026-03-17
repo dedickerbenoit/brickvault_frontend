@@ -16,3 +16,10 @@ export {
   useAddSetToCollection,
   useRemoveSetFromCollection,
 } from "./useCollections";
+export {
+  useWishlist,
+  useAddToWishlist,
+  useUpdateWishlistItem,
+  useDeleteWishlistItem,
+  useMarkWishlistPurchased,
+} from "./useWishlist";

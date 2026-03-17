@@ -82,10 +82,13 @@ export async function deleteUserSet(id: number): Promise<void> {
   await api.delete(`${API_ROUTES.USER_SETS.LIST}/${id}`);
 }
 
-export async function searchSets(query: string): Promise<SetData[]> {
+export async function searchSets(
+  query: string,
+  config?: { signal?: AbortSignal },
+): Promise<SetData[]> {
   const { data } = await api.get<{ data: SetData[] }>(
     API_ROUTES.USER_SETS.SEARCH,
-    { params: { q: query } },
+    { params: { q: query }, signal: config?.signal },
   );
   return data.data;
 }
