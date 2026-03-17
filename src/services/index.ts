@@ -30,3 +30,17 @@ export type {
   StoreCollectionPayload,
   UpdateCollectionPayload,
 } from "./collectionService";
+export {
+  getWishlist,
+  createWishlistItem,
+  updateWishlistItem,
+  deleteWishlistItem,
+  markWishlistPurchased,
+} from "./wishlistService";
+export type {
+  WishlistItemData,
+  WishlistListResponse,
+  StoreWishlistPayload,
+  UpdateWishlistPayload,
+  MarkPurchasedPayload,
+} from "./wishlistService";

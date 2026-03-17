@@ -30,4 +30,7 @@ export const API_ROUTES = {
   COLLECTIONS: {
     LIST: "/user-collections",
   },
+  WISHLISTS: {
+    LIST: "/user-wishlists",
+  },
 } as const;
