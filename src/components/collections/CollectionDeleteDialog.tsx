@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui";
+import { Button, Modal } from "@/components/ui";
 
 interface CollectionDeleteDialogProps {
   collectionName: string;
@@ -19,33 +18,9 @@ export default function CollectionDeleteDialog({
 }: CollectionDeleteDialogProps) {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onCancel();
-    }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onCancel]);
-
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="delete-collection-dialog-title"
-      onClick={onCancel}
-    >
-      <div
-        className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal onClose={onCancel} ariaLabelledBy="delete-collection-dialog-title" size="sm">
+      <div className="p-6">
         <h3
           id="delete-collection-dialog-title"
           className="text-lg font-semibold text-gray-900"
@@ -70,6 +45,6 @@ export default function CollectionDeleteDialog({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
