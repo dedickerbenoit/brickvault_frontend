@@ -3,6 +3,13 @@ import { API_ROUTES } from "@/constants";
 import type { CollectionColor } from "@/constants";
 import type { UserSetData } from "./userSetService";
 
+export interface CollectionPreviewSet {
+  id: number;
+  set_num: string;
+  name: string;
+  img_url: string | null;
+}
+
 export interface CollectionData {
   id: number;
   name: string;
@@ -10,6 +17,8 @@ export interface CollectionData {
   color: CollectionColor;
   sets_count: number;
   user_sets?: UserSetData[];
+  contains_user_set?: boolean;
+  preview_sets?: CollectionPreviewSet[];
   created_at: string;
 }
 
@@ -25,9 +34,13 @@ export interface UpdateCollectionPayload {
   color?: CollectionColor;
 }
 
-export async function getCollections(): Promise<CollectionData[]> {
+export async function getCollections(
+  userSetId?: number,
+): Promise<CollectionData[]> {
+  const params = userSetId ? { user_set_id: userSetId } : undefined;
   const { data } = await api.get<{ data: CollectionData[] }>(
     API_ROUTES.COLLECTIONS.LIST,
+    { params },
   );
   return data.data;
 }

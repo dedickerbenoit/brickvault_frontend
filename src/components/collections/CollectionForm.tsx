@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCreateCollection, useUpdateCollection } from "@/hooks";
-import { Button } from "@/components/ui";
+import { Button, Modal } from "@/components/ui";
 import { COLLECTION_COLORS } from "@/constants";
 import type { CollectionColor } from "@/constants";
 import type { CollectionData } from "@/services/collectionService";
@@ -32,21 +32,6 @@ export default function CollectionForm({
   const [error, setError] = useState("");
 
   const isLoading = createMutation.isPending || updateMutation.isPending;
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
-    }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -88,29 +73,19 @@ export default function CollectionForm({
   }
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="collection-form-title"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2
-            id="collection-form-title"
-            className="text-lg font-semibold text-gray-900"
-          >
-            {isEdit
-              ? t("collections.form.editTitle")
-              : t("collections.form.createTitle")}
-          </h2>
-        </div>
+    <Modal onClose={onClose} ariaLabelledBy="collection-form-title">
+      <div className="px-6 py-4 border-b border-gray-200">
+        <h2
+          id="collection-form-title"
+          className="text-lg font-semibold text-gray-900"
+        >
+          {isEdit
+            ? t("collections.form.editTitle")
+            : t("collections.form.createTitle")}
+        </h2>
+      </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
             <label
               htmlFor="collectionName"
@@ -189,8 +164,7 @@ export default function CollectionForm({
                 : t("collections.form.createButton")}
             </Button>
           </div>
-        </form>
-      </div>
-    </div>
+      </form>
+    </Modal>
   );
 }

@@ -13,10 +13,12 @@ import type {
   UpdateCollectionPayload,
 } from "@/services/collectionService";
 
-export function useCollections() {
+export function useCollections(userSetId?: number) {
   return useQuery({
-    queryKey: ["collections"],
-    queryFn: getCollections,
+    queryKey: userSetId
+      ? ["collections", { userSetId }]
+      : ["collections"],
+    queryFn: () => getCollections(userSetId),
     staleTime: 30 * 1000,
   });
 }
