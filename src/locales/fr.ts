@@ -206,6 +206,7 @@ export default {
   common: {
     cancel: "Annuler",
     change: "Changer",
+    close: "Fermer",
   },
   sets: {
     title: "Mes sets",
@@ -214,6 +215,8 @@ export default {
       description: "Vous n'avez pas encore ajouté de set à votre collection.",
       cta: "Ajouter un set",
     },
+    viewTable: "Vue tableau",
+    viewCards: "Vue grille",
     add: {
       title: "Ajouter un set",
       button: "Ajouter un set",
