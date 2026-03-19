@@ -11,7 +11,7 @@ interface CollectionCardProps {
   onDelete: () => void;
 }
 
-function PreviewStack({
+function PreviewImages({
   previewSets,
 }: {
   previewSets: CollectionData["preview_sets"];
@@ -20,9 +20,9 @@ function PreviewStack({
 
   if (!previewSets || previewSets.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-gray-300">
+      <div className="flex items-center justify-center h-full text-gray-300">
         <FolderIcon className="w-10 h-10" />
-        <span className="text-xs mt-1">
+        <span className="text-xs ml-2">
           {t("collections.detail.empty.title")}
         </span>
       </div>
@@ -30,24 +30,20 @@ function PreviewStack({
   }
 
   return (
-    <div className="relative flex items-center h-full pl-4">
-      {previewSets.slice(0, 3).map((set, index) => (
+    <div className="flex items-center gap-2 h-full overflow-hidden">
+      {previewSets.slice(0, 4).map((set) => (
         <div
           key={set.id}
-          className="absolute"
-          style={{
-            left: `${index * 20}px`,
-            zIndex: 30 - index * 10,
-          }}
+          className="flex-shrink-0 w-16 h-16"
         >
           {set.img_url ? (
             <img
               src={set.img_url}
               alt={set.name}
-              className="w-16 h-16 object-contain rounded-lg border-2 border-white shadow-md bg-white"
+              className="w-full h-full object-contain rounded-lg bg-gray-50 p-1"
             />
           ) : (
-            <div className="w-16 h-16 bg-gray-200 rounded-lg border-2 border-white shadow-md flex items-center justify-center">
+            <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
               <CubeIcon className="w-6 h-6 text-gray-400" />
             </div>
           )}
@@ -68,17 +64,17 @@ export default function CollectionCard({
   return (
     <Link
       to={ROUTES.COLLECTION_DETAIL.replace(":id", String(collection.id))}
-      className="block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+      className="flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow h-full"
     >
       <div className={cn("h-2", colors.dot)} />
 
       {collection.preview_sets !== undefined && (
-        <div className="h-24 px-5 pt-4">
-          <PreviewStack previewSets={collection.preview_sets} />
+        <div className="h-20 px-5 pt-3">
+          <PreviewImages previewSets={collection.preview_sets} />
         </div>
       )}
 
-      <div className="p-5">
+      <div className="flex flex-col flex-1 p-5">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0 flex-1">
             <h3 className="font-semibold text-gray-900 truncate">
@@ -92,7 +88,7 @@ export default function CollectionCard({
           </div>
           <span
             className={cn(
-              "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium",
+              "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium shrink-0",
               colors.bg,
               colors.text,
             )}
@@ -100,7 +96,7 @@ export default function CollectionCard({
             {collection.sets_count} {t("collections.detail.setsCount")}
           </span>
         </div>
-        <div className="flex justify-end gap-1 mt-4">
+        <div className="flex justify-end gap-1 mt-auto pt-4">
           <button
             type="button"
             title={t("collections.edit")}

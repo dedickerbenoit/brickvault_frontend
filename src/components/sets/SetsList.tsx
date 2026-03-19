@@ -91,18 +91,6 @@ export default function SetsList() {
         <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
           <button
             type="button"
-            onClick={() => handleViewModeChange("table")}
-            title={t("sets.viewTable")}
-            className={`p-2 rounded-md transition-colors cursor-pointer ${
-              viewMode === "table"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            <ListIcon className="w-5 h-5" />
-          </button>
-          <button
-            type="button"
             onClick={() => handleViewModeChange("cards")}
             title={t("sets.viewCards")}
             className={`p-2 rounded-md transition-colors cursor-pointer ${
@@ -112,6 +100,18 @@ export default function SetsList() {
             }`}
           >
             <GridIcon className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => handleViewModeChange("table")}
+            title={t("sets.viewTable")}
+            className={`p-2 rounded-md transition-colors cursor-pointer ${
+              viewMode === "table"
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            <ListIcon className="w-5 h-5" />
           </button>
         </div>
         <Button variant="filled" onClick={() => setShowAddForm(true)}>
